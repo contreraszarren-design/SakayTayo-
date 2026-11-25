@@ -44,4 +44,3 @@ The main features of the Campus Carpool Matching and Reservation System are:
 6. **Available Seat Management** – Automatically updates the number of available seats after reservations or cancellations.
 7. **Cost-Sharing Calculator** – Estimates and divides transportation expenses among passengers.
 8. **Ride History** – Allows users to view their previous and upcoming carpool reservations.
-9. **Admin Dashboard** – Provides administrators with tools to manage users, monitor ride postings, and oversee system activities.
