@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SakayTayo! — Driver Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="sakaytayorides.css" />
+  <link rel="stylesheet" href="sakaytayodriverdash.css" />
+  <script>
+    // Driver-only gate: runs before the page is shown.
+    (function () {
+      var u = {};
+      try { u = JSON.parse(localStorage.getItem("sakaytayo_user") || "{}"); } catch (e) {}
+      if (u.role === "passenger") { location.replace("sakaytayorides.html"); }
+      else if (u.role !== "driver") { location.replace("sakaytayolandingpage.html"); }
+      else if (!u.verificationStatus) { location.replace("driververification.html"); }
+    })();
+  </script>
+</head>
+<body>
+  <div class="bg-scene" aria-hidden="true"></div>
+
+  <header class="navbar">
+    <a href="sakaytayolandingpage.html" class="brand-logo"><span class="brand-sakay">Sakay</span><span class="brand-tayo">Tayo!</span></a>
+    <nav class="nav-links" aria-label="Driver Navigation">
+      <a href="sakaytayolandingpage.html" class="nav-item">Home</a>
+      <button class="nav-item tab-btn active" data-tab="requests">Requests <span id="req-count" class="count">0</span></button>
+      <button class="nav-item tab-btn" data-tab="post">Post a Ride</button>
+      <button class="nav-item tab-btn" data-tab="manage">Manage Seats</button>
+      <button class="nav-item" id="logout">Log out</button>
+    </nav>
+  </header>
+
+  <main class="rides-wrapper">
+    <div class="glass-card driver-head">
+      <div>
+        <p class="tagline">driver dashboard</p>
+        <h1 class="card-heading left">Hi, <span id="driver-name">driver</span></h1>
+      </div>
+      <div class="stats" id="stats"></div>
+    </div>
+
+    <section class="panel active" id="tab-requests">
+      <div id="request-list" class="ride-list"></div>
+    </section>
+
+    <section class="panel" id="tab-post">
+      <div class="glass-card post-card">
+        <h2 class="card-heading left">Post a ride</h2>
+        <p class="card-subtitle left">Let students know when and where you're driving. Passengers can then request a seat.</p>
+        <form id="post-form" class="search-grid" novalidate>
+          <div class="form-group"><label for="postFrom">Departure location</label><input id="postFrom" list="post-places" placeholder="e.g. San Jose Town Proper" autocomplete="off" /></div>
+          <div class="form-group"><label for="postTo">Destination</label><input id="postTo" list="post-places" placeholder="e.g. BatStateU Alangilan" autocomplete="off" /></div>
+          <div class="form-group"><label for="postDate">Date</label><input id="postDate" type="date" /></div>
+          <div class="form-group"><label for="postTime">Departure time</label><input id="postTime" type="time" /></div>
+          <div class="form-group"><label for="postSeats">Available seats</label>
+            <select id="postSeats"><option value="" disabled selected>Select seats</option></select></div>
+          <div class="form-group"><label>Vehicle</label><p class="vehicle-line" id="post-vehicle"></p></div>
+          <p class="form-error span-2" id="post-error" role="alert" hidden></p>
+          <button type="submit" class="pill-btn primary-btn span-2">Post ride</button>
+        </form>
+        <datalist id="post-places"></datalist>
+      </div>
+    </section>
+
+    <section class="panel" id="tab-manage">
+      <div id="manage-list" class="ride-list"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="sakaytayodata.js"></script>
+  <script src="sakaytayodriverdash.js"></script>
+</body>
+</html>

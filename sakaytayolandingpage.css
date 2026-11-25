@@ -1,0 +1,550 @@
+:root {
+  --sakay-green: #58a618;
+  --tayo-light-green: #a6e267;
+  --btn-driver-bg: #5a9413;
+  --btn-driver-hover: #4b7d0f;
+  --btn-passenger-bg: #e5e7eb;
+  --btn-passenger-hover: #ffffff;
+  --text-dark: #1f2937;
+  --text-light: #f9fafb;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100vh;
+  background-color: #173f2b;
+  color: var(--text-light);
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.bg-scene {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-scene svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.bg-scene .clouds {
+  animation: drift 70s ease-in-out infinite alternate;
+}
+
+.bg-scene .clouds2 {
+  animation: drift 95s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes drift {
+  from { transform: translateX(-160px); }
+  to { transform: translateX(260px); }
+}
+
+.bg-scene .glow {
+  animation: pulse 6s ease-in-out infinite;
+  transform-origin: 1500px 560px;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.12); opacity: 1; }
+}
+
+.bg-scene .sway {
+  animation: sway 5s ease-in-out infinite alternate;
+  transform-origin: 0 0;
+}
+
+.bg-scene .sway.b {
+  animation-duration: 6.5s;
+  animation-delay: -2s;
+}
+
+.bg-scene .sway.c {
+  animation-duration: 4.2s;
+  animation-delay: -1s;
+}
+
+@keyframes sway {
+  from { transform: rotate(-2.2deg); }
+  to { transform: rotate(2.2deg); }
+}
+
+.bg-scene .dash {
+  animation: roll 0.9s linear infinite;
+}
+
+@keyframes roll {
+  to { stroke-dashoffset: -126; }
+}
+
+.bg-scene .lane1 {
+  animation: drive 26s linear infinite;
+}
+
+.bg-scene .lane2 {
+  animation: drive 13s linear infinite;
+}
+
+@keyframes drive {
+  from { transform: translateX(-400px); }
+  to { transform: translateX(2300px); }
+}
+
+.bg-scene .bounce {
+  animation: bounce 0.5s ease-in-out infinite alternate;
+}
+
+.bg-scene .bounce.b {
+  animation-duration: 0.42s;
+}
+
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-2.5px); }
+}
+
+.bg-scene .spoke {
+  animation: spin 0.6s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.bg-scene .pin {
+  animation: bob 4s ease-in-out infinite alternate;
+}
+
+.bg-scene .pin.b {
+  animation-duration: 5s;
+  animation-delay: -1.5s;
+}
+
+.bg-scene .pin.c {
+  animation-duration: 3.6s;
+  animation-delay: -2.5s;
+}
+
+@keyframes bob {
+  from { transform: translateY(-10px); }
+  to { transform: translateY(12px); }
+}
+
+.bg-scene .route {
+  animation: flow 3s linear infinite;
+}
+
+@keyframes flow {
+  to { stroke-dashoffset: -64; }
+}
+
+.bg-scene .win {
+  animation: twinkle 5s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.45; }
+  to { opacity: 0.9; }
+}
+
+.navbar {
+  width: 100%;
+  padding: 1rem 3.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(25, 30, 25, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.brand-logo {
+  font-size: 1.55rem;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s ease;
+}
+
+.brand-logo:hover {
+  transform: scale(1.03);
+}
+
+.brand-sakay {
+  color: var(--sakay-green);
+}
+
+.brand-tayo {
+  color: var(--tayo-light-green);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+}
+
+.nav-item {
+  color: #f3f4f6;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 600;
+  position: relative;
+  padding: 0.25rem 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-item:hover {
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.nav-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background-color: var(--tayo-light-green);
+  transition: width 0.25s ease;
+}
+
+.nav-item:hover::after,
+.nav-item.active::after {
+  width: 100%;
+}
+
+.hero {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1.5rem 4rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content {
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-title {
+  font-size: clamp(3.5rem, 8vw, 5.6rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
+  margin-bottom: 0.25rem;
+}
+
+.hero-tagline {
+  font-family: "Caveat", cursive;
+  font-size: clamp(1.75rem, 3.5vw, 2.35rem);
+  font-weight: 700;
+  color: #d9f2b4;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+  margin-bottom: 1.35rem;
+}
+
+.hero-description {
+  font-size: clamp(0.95rem, 1.5vw, 1.08rem);
+  font-weight: 600;
+  line-height: 1.55;
+  color: #ffffff;
+  max-width: 540px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.55);
+  margin-bottom: 2.2rem;
+}
+
+.cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.btn {
+  font-family: inherit;
+  font-size: 0.98rem;
+  font-weight: 700;
+  padding: 0.95rem 2.3rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+}
+
+.btn-driver {
+  background-color: var(--btn-driver-bg);
+  color: #ffffff;
+}
+
+.btn-driver:hover {
+  background-color: var(--btn-driver-hover);
+}
+
+.btn-passenger {
+  background-color: var(--btn-passenger-bg);
+  color: var(--text-dark);
+}
+
+.btn-passenger:hover {
+  background-color: var(--btn-passenger-hover);
+}
+
+.toast {
+  position: fixed;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(24, 32, 24, 0.92);
+  color: #f9fafb;
+  padding: 0.85rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid rgba(166, 226, 103, 0.4);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 50;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 640px) {
+  .navbar {
+    padding: 0.9rem 1.25rem;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .nav-links {
+    gap: 1.25rem;
+  }
+
+  .cta-group {
+    flex-direction: column;
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+.cta-group.attention .btn {
+  box-shadow: 0 0 0 4px rgba(166, 226, 103, 0.7), 0 10px 22px rgba(0, 0, 0, 0.35);
+}
+
+/* ===== Log In form (frosted pill card, same look as the sign-up pages) ===== */
+.login-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  background: rgba(6, 24, 15, 0.55);
+  overflow-y: auto;
+}
+
+.login-overlay[hidden] {
+  display: none;
+}
+
+.login-overlay .auth-card {
+  width: 100%;
+  max-width: 440px;
+  background: rgba(235, 235, 235, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 3.75rem;
+  padding: 2.35rem 2.75rem 2rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #1f2937;
+}
+
+.login-overlay .card-heading {
+  text-align: center;
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #478a14;
+  margin-bottom: 0.4rem;
+}
+
+.login-overlay .card-subtitle {
+  text-align: center;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 1.25rem;
+}
+
+.login-overlay .form-group {
+  margin-bottom: 0.95rem;
+}
+
+.login-overlay .form-group label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.3rem;
+  padding-left: 0.35rem;
+}
+
+.login-overlay .form-group input {
+  width: 100%;
+  height: 2.65rem;
+  padding: 0 1.25rem;
+  border-radius: 9999px;
+  border: 2.5px solid #525252;
+  background: rgba(255, 255, 255, 0.35);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1f2937;
+  outline: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-overlay .form-group input:focus {
+  border-color: #478a14;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 0 0 3px rgba(88, 166, 24, 0.2);
+}
+
+.login-overlay .form-error {
+  margin: 0.2rem 0.35rem 0;
+  padding: 0.55rem 1rem;
+  border-radius: 1rem;
+  background: rgba(200, 69, 59, 0.14);
+  border: 1px solid rgba(200, 69, 59, 0.45);
+  color: #8a1f17;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.login-overlay .form-error[hidden] {
+  display: none;
+}
+
+.login-overlay .form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.2rem;
+  padding: 0 0.35rem;
+}
+
+.login-overlay .back-link {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #374151;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.login-overlay .back-link:hover {
+  color: #478a14;
+}
+
+.login-overlay .submit-btn {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  padding: 0.45rem 0.9rem;
+  border-radius: 9999px;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.login-overlay .submit-btn:hover:not(:disabled) {
+  background-color: #478a14;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.login-overlay .submit-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.login-overlay .login-alt {
+  text-align: center;
+  margin-top: 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.login-overlay .login-alt a {
+  color: #2f6b13;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.login-overlay .login-alt a:hover {
+  color: #1f4a0b;
+}
+
+@media (max-width: 520px) {
+  .login-overlay .auth-card {
+    border-radius: 2.5rem;
+    padding: 2rem 1.5rem 1.75rem;
+  }
+}

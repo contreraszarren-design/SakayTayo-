@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SakayTayo! — Driver Verification</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="driververification.css" />
+</head>
+<body>
+  <div class="bg-scene" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#173f2b"/>
+          <stop offset="0.45" stop-color="#2f6b43"/>
+          <stop offset="0.8" stop-color="#6fae5e"/>
+          <stop offset="1" stop-color="#b9dc86"/>
+        </linearGradient>
+        <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" stop-color="#fff3b0" stop-opacity="1"/>
+          <stop offset="0.35" stop-color="#f6e58d" stop-opacity="0.7"/>
+          <stop offset="1" stop-color="#f6e58d" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="vig" cx="0.5" cy="0.45" r="0.75">
+          <stop offset="0.5" stop-color="#000" stop-opacity="0"/>
+          <stop offset="1" stop-color="#06180f" stop-opacity="0.55"/>
+        </radialGradient>
+        <linearGradient id="road" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2c3a33"/>
+          <stop offset="1" stop-color="#18211d"/>
+        </linearGradient>
+
+        <symbol id="car" viewBox="0 0 240 90" overflow="visible">
+          <path d="M10 62 Q10 44 30 42 L62 38 Q76 12 106 12 L160 12 Q186 14 200 38 L224 43 Q236 47 236 60 L236 70 L10 70 Z" fill="currentColor"/>
+          <path d="M80 36 Q90 21 108 21 L124 21 L124 36 Z" fill="#cfeaf2" opacity="0.9"/>
+          <path d="M132 21 L158 21 Q174 23 186 36 L132 36 Z" fill="#cfeaf2" opacity="0.9"/>
+          <rect x="226" y="48" width="10" height="8" rx="3" fill="#fff3b0"/>
+          <rect x="10" y="48" width="8" height="8" rx="3" fill="#e0423a"/>
+          <circle cx="62" cy="72" r="17" fill="#0e1210"/><circle cx="62" cy="72" r="9" fill="#9aa59f"/>
+          <rect class="spoke" x="60" y="64" width="4" height="16" fill="#0e1210"/>
+          <circle cx="186" cy="72" r="17" fill="#0e1210"/><circle cx="186" cy="72" r="9" fill="#9aa59f"/>
+          <rect class="spoke" x="184" y="64" width="4" height="16" fill="#0e1210"/>
+        </symbol>
+
+        <symbol id="jeep" viewBox="0 0 260 90" overflow="visible">
+          <path d="M8 66 L8 30 Q8 20 20 20 L190 20 Q205 20 212 34 L238 44 Q252 48 252 60 L252 70 L8 70 Z" fill="currentColor"/>
+          <g fill="#cfeaf2" opacity="0.9">
+            <rect x="24" y="28" width="30" height="20" rx="3"/><rect x="62" y="28" width="30" height="20" rx="3"/>
+            <rect x="100" y="28" width="30" height="20" rx="3"/><rect x="138" y="28" width="30" height="20" rx="3"/>
+            <path d="M176 28 L196 28 Q204 30 208 40 L176 40Z"/>
+          </g>
+          <rect x="8" y="54" width="244" height="6" fill="#fff" opacity="0.5"/>
+          <rect x="244" y="50" width="8" height="8" rx="3" fill="#fff3b0"/>
+          <rect x="8" y="48" width="7" height="8" rx="3" fill="#e0423a"/>
+          <circle cx="64" cy="72" r="17" fill="#0e1210"/><circle cx="64" cy="72" r="9" fill="#9aa59f"/>
+          <rect class="spoke" x="62" y="64" width="4" height="16" fill="#0e1210"/>
+          <circle cx="202" cy="72" r="17" fill="#0e1210"/><circle cx="202" cy="72" r="9" fill="#9aa59f"/>
+          <rect class="spoke" x="200" y="64" width="4" height="16" fill="#0e1210"/>
+        </symbol>
+
+        <g id="palm">
+          <path d="M0 0 Q14 -120 -6 -250" stroke="#3a2a1a" stroke-width="14" fill="none" stroke-linecap="round"/>
+          <g fill="#1f5a30">
+            <path d="M-6 -250 Q-80 -290 -150 -240 Q-80 -265 -6 -250Z"/>
+            <path d="M-6 -250 Q-60 -330 -140 -320 Q-70 -300 -6 -250Z"/>
+            <path d="M-6 -250 Q20 -340 90 -350 Q40 -310 -6 -250Z"/>
+            <path d="M-6 -250 Q80 -290 150 -230 Q70 -260 -6 -250Z"/>
+            <path d="M-6 -250 Q-20 -200 -80 -180 Q-30 -215 -6 -250Z"/>
+            <path d="M-6 -250 Q30 -200 90 -185 Q40 -220 -6 -250Z"/>
+          </g>
+        </g>
+      </defs>
+
+      <rect width="1920" height="1080" fill="url(#sky)"/>
+      <circle class="glow" cx="1500" cy="560" r="330" fill="url(#sun)"/>
+      <circle cx="1500" cy="560" r="95" fill="#fff0a6" opacity="0.9"/>
+
+      <g class="clouds" fill="#ffffff" opacity="0.13">
+        <ellipse cx="380" cy="180" rx="220" ry="34"/><ellipse cx="500" cy="155" rx="150" ry="30"/>
+        <ellipse cx="1760" cy="300" rx="170" ry="26"/>
+      </g>
+      <g class="clouds2" fill="#ffffff" opacity="0.11">
+        <ellipse cx="1250" cy="130" rx="260" ry="36"/><ellipse cx="1400" cy="105" rx="150" ry="28"/>
+        <ellipse cx="800" cy="260" rx="190" ry="28"/>
+      </g>
+
+      <path d="M0 640 Q220 520 460 600 Q700 680 940 580 Q1200 470 1440 590 Q1680 700 1920 560 L1920 1080 L0 1080Z" fill="#5da05a" opacity="0.55"/>
+      <path d="M0 720 Q260 620 520 700 Q800 790 1060 690 Q1360 580 1640 700 Q1800 760 1920 700 L1920 1080 L0 1080Z" fill="#3c8048"/>
+
+      <g fill="#1d4a2c" opacity="0.95">
+        <rect x="150" y="610" width="420" height="120"/>
+        <rect x="320" y="540" width="80" height="190"/>
+        <polygon points="320,540 360,495 400,540"/>
+        <rect x="100" y="650" width="70" height="80"/>
+        <rect x="570" y="640" width="90" height="90"/>
+      </g>
+      <g class="win" fill="#fff3b0">
+        <rect x="185" y="640" width="22" height="30" rx="3"/><rect x="230" y="640" width="22" height="30" rx="3"/>
+        <rect x="275" y="640" width="22" height="30" rx="3"/><rect x="430" y="640" width="22" height="30" rx="3"/>
+        <rect x="475" y="640" width="22" height="30" rx="3"/><rect x="520" y="640" width="22" height="30" rx="3"/>
+        <circle cx="360" cy="580" r="12"/>
+      </g>
+
+      <path d="M0 800 Q300 740 620 800 Q980 870 1320 790 Q1640 720 1920 800 L1920 1080 L0 1080Z" fill="#2a6338"/>
+      <g fill="#1b4a2a">
+        <circle cx="760" cy="790" r="46"/><circle cx="810" cy="780" r="38"/><rect x="778" y="800" width="8" height="40"/>
+        <circle cx="1080" cy="810" r="40"/><circle cx="1125" cy="800" r="34"/>
+      </g>
+      <g transform="translate(1700 860)"><g class="sway"><use href="#palm"/></g></g>
+      <g transform="translate(1830 880) scale(0.8)"><g class="sway b"><use href="#palm"/></g></g>
+      <g transform="translate(126 792) scale(0.9)"><g class="sway c"><use href="#palm"/></g></g>
+
+      <path d="M0 920 L1920 900 L1920 1080 L0 1080Z" fill="url(#road)"/>
+      <path d="M0 918 L1920 898" stroke="#d9e8c8" stroke-width="5" opacity="0.5"/>
+      <path class="dash" d="M0 1010 L1920 996" stroke="#f2e27a" stroke-width="6" stroke-dasharray="70 56" opacity="0.85" fill="none"/>
+
+      <g class="lane1" style="animation-delay:-0.00s">
+        <ellipse cx="100" cy="965" rx="92" ry="7" fill="#000" opacity="0.35"/>
+        <g class="bounce" style="animation-delay:-0.00s"><use href="#car" x="0" y="888" width="200" height="75" color="#e9ece2"/></g>
+      </g>
+      <g class="lane1" style="animation-delay:-4.00s">
+        <ellipse cx="115" cy="965" rx="106" ry="8" fill="#000" opacity="0.35"/>
+        <g class="bounce" style="animation-delay:-0.13s"><use href="#jeep" x="0" y="883" width="230" height="80" color="#e2b43a"/></g>
+      </g>
+      <g class="lane1" style="animation-delay:-7.24s">
+        <ellipse cx="100" cy="965" rx="92" ry="7" fill="#000" opacity="0.35"/>
+        <g class="bounce" style="animation-delay:-0.26s"><use href="#car" x="0" y="888" width="200" height="75" color="#c8453b"/></g>
+      </g>
+      <g class="lane1" style="animation-delay:-11.38s">
+        <ellipse cx="100" cy="965" rx="92" ry="7" fill="#000" opacity="0.35"/>
+        <g class="bounce" style="animation-delay:-0.39s"><use href="#car" x="0" y="888" width="200" height="75" color="#4a9a1f"/></g>
+      </g>
+      <g class="lane1" style="animation-delay:-14.57s">
+        <ellipse cx="115" cy="965" rx="106" ry="8" fill="#000" opacity="0.35"/>
+        <g class="bounce" style="animation-delay:-0.02s"><use href="#jeep" x="0" y="883" width="230" height="80" color="#f08a3c"/></g>
+      </g>
+      <g class="lane1" style="animation-delay:-18.72s">
+        <ellipse cx="100" cy="965" rx="92" ry="7" fill="#000" opacity="0.35"/>
+        <g class="bounce" style="animation-delay:-0.15s"><use href="#car" x="0" y="888" width="200" height="75" color="#3d7fb5"/></g>
+      </g>
+      <g class="lane1" style="animation-delay:-22.29s">
+        <ellipse cx="100" cy="965" rx="92" ry="7" fill="#000" opacity="0.35"/>
+        <g class="bounce" style="animation-delay:-0.28s"><use href="#car" x="0" y="888" width="200" height="75" color="#8fd16a"/></g>
+      </g>
+
+      <g class="lane2" style="animation-delay:-0.00s">
+        <ellipse cx="150" cy="1070" rx="138" ry="11" fill="#000" opacity="0.35"/>
+        <g class="bounce" style="animation-delay:-0.00s"><use href="#car" x="0" y="957" width="300" height="112" color="#4a9a1f"/></g>
+      </g>
+      <g class="lane2" style="animation-delay:-2.41s">
+        <ellipse cx="165" cy="1070" rx="152" ry="12" fill="#000" opacity="0.35"/>
+        <g class="bounce" style="animation-delay:-0.13s"><use href="#jeep" x="0" y="955" width="330" height="114" color="#e2b43a"/></g>
+      </g>
+      <g class="lane2" style="animation-delay:-5.34s">
+        <ellipse cx="150" cy="1070" rx="138" ry="11" fill="#000" opacity="0.35"/>
+        <g class="bounce" style="animation-delay:-0.26s"><use href="#car" x="0" y="957" width="300" height="112" color="#e9ece2"/></g>
+      </g>
+      <g class="lane2" style="animation-delay:-7.80s">
+        <ellipse cx="150" cy="1070" rx="138" ry="11" fill="#000" opacity="0.35"/>
+        <g class="bounce" style="animation-delay:-0.39s"><use href="#car" x="0" y="957" width="300" height="112" color="#2b2f2d"/></g>
+      </g>
+      <g class="lane2" style="animation-delay:-10.26s">
+        <ellipse cx="165" cy="1070" rx="152" ry="12" fill="#000" opacity="0.35"/>
+        <g class="bounce" style="animation-delay:-0.02s"><use href="#jeep" x="0" y="955" width="330" height="114" color="#c8453b"/></g>
+      </g>
+
+      <path class="route" d="M318 340 Q620 220 1006 360 T1670 460" stroke="#c9f59a" stroke-width="3" stroke-dasharray="4 12" fill="none" opacity="0.35" stroke-linecap="round"/>
+      <g fill="#c9f59a">
+        <path class="pin" opacity="0.4" d="M980 330 a26 26 0 1 1 52 0 c0 22 -26 52 -26 52 s-26 -30 -26 -52z"/>
+        <path class="pin b" opacity="0.35" d="M300 300 a18 18 0 1 1 36 0 c0 15 -18 36 -18 36 s-18 -21 -18 -36z"/>
+        <path class="pin c" opacity="0.35" d="M1650 420 a20 20 0 1 1 40 0 c0 16 -20 40 -20 40 s-20 -24 -20 -40z"/>
+      </g>
+
+      <rect width="1920" height="1080" fill="url(#vig)"/>
+    </svg>
+  </div>
+
+  <main class="auth-wrapper verify-wrapper">
+    <div class="brand-header">
+      <a href="sakaytayolandingpage.html" class="brand-title">
+        <span class="brand-sakay">Sakay</span><span class="brand-tayo">Tayo!</span>
+      </a>
+      <p class="brand-tagline">commuting made easier</p>
+    </div>
+
+    <section class="auth-card verify-card">
+      <!-- STEP 1: VEHICLE, ROUTE & SCHEDULE -->
+      <div id="step-1" class="step-panel active">
+        <h1 class="card-heading">Become a Verified Driver</h1>
+        <p class="card-subtitle" id="step1-subtitle">Create your account and register your vehicle and schedule in one go.</p>
+
+        <form id="step1-form" novalidate>
+          <div id="account-fields">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" placeholder="e.g. Juan Dela Cruz" autocomplete="name" required />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email (.com)</label>
+                <input type="email" id="email" name="email" placeholder="e.g. juan@gmail.com" autocomplete="email" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactNumber">Contact Number</label>
+                <input type="tel" id="contactNumber" name="contactNumber" placeholder="e.g. 09171234567" autocomplete="tel" required />
+              </div>
+
+              <div class="form-group" id="passwordGroup">
+                <label for="password">Password (8+ characters)</label>
+                <input type="password" id="password" name="password" placeholder="At least 8 characters" autocomplete="new-password" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="carType">Car Type</label>
+              <select id="carType" name="carType" required>
+                <option value="" disabled selected>Select car type</option>
+                <option value="Sedan">Sedan</option>
+                <option value="Hatchback">Hatchback</option>
+                <option value="SUV / Crossover">SUV / Crossover</option>
+                <option value="MPV / Van">MPV / Van</option>
+                <option value="Pickup Truck">Pickup Truck</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="availableSeats">Available Seats</label>
+              <select id="availableSeats" name="availableSeats" required>
+                <option value="" disabled selected>Select seats</option>
+                <option value="1">1 Seat</option>
+                <option value="2">2 Seats</option>
+                <option value="3">3 Seats</option>
+                <option value="4">4 Seats</option>
+                <option value="5">5+ Seats</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="licenseNumber">Driver License Number</label>
+            <input type="text" id="licenseNumber" name="licenseNumber" placeholder="e.g. D01-23-456789" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group autocomplete-group">
+              <label for="startLocation">Start Location (Batangas)</label>
+              <input
+                type="text"
+                id="startLocation"
+                name="startLocation"
+                placeholder="Type e.g. San Jose, Lipa..."
+                autocomplete="off"
+                required
+              />
+              <ul id="startSuggestions" class="suggestions-list" role="listbox"></ul>
+            </div>
+
+            <div class="form-group autocomplete-group">
+              <label for="destinationLocation">Destination (Batangas)</label>
+              <input
+                type="text"
+                id="destinationLocation"
+                name="destinationLocation"
+                placeholder="Type e.g. Campus, San Jose..."
+                autocomplete="off"
+                required
+              />
+              <ul id="destinationSuggestions" class="suggestions-list" role="listbox"></ul>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Schedule</label>
+            <div class="schedule-grid">
+              <select id="scheduleDays" name="scheduleDays" aria-label="Schedule Days" required>
+                <option value="" disabled selected>Days (e.g. Mon/Wed/Fri)</option>
+                <option value="Mon / Wed / Fri">Mon / Wed / Fri</option>
+                <option value="Tue / Thu">Tue / Thu</option>
+                <option value="Mon – Fri">Mon – Fri</option>
+                <option value="Weekends">Weekends</option>
+              </select>
+
+              <input type="time" id="startTime" name="startTime" aria-label="Start Time" required />
+              <input type="time" id="endTime" name="endTime" aria-label="End Time" required />
+            </div>
+          </div>
+
+          <p class="form-error" id="form-error-1" role="alert" hidden></p>
+
+          <div class="btn-stack">
+            <button type="submit" class="pill-btn primary-btn">Continue to Verification</button>
+            <a href="sakaytayolandingpage.html" class="pill-btn secondary-btn">Cancel</a>
+          </div>
+
+          <div class="step-indicator">
+            <div class="step-bars">
+              <span class="bar active"></span>
+              <span class="bar"></span>
+            </div>
+            <p class="step-label">Step 1: Driver Details</p>
+          </div>
+        </form>
+      </div>
+
+      <!-- STEP 2: LICENSE DROP BOX & FURTHER VERIFICATION -->
+      <div id="step-2" class="step-panel">
+        <h1 class="card-heading">Complete Driver Verification</h1>
+        <p class="card-subtitle">Additional details are required for safety and admin approval.</p>
+
+        <form id="step2-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="vehicleModel">Vehicle Model &amp; Color</label>
+              <input type="text" id="vehicleModel" name="vehicleModel" placeholder="e.g. Silver Honda City" required />
+            </div>
+
+            <div class="form-group">
+              <label for="plateNumber">Plate Number (3 Letters + 3 Digits)</label>
+              <input
+                type="text"
+                id="plateNumber"
+                name="plateNumber"
+                placeholder="e.g. ABC 123"
+                maxlength="7"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="licenseDropInput">Driver's License Image Drop Box</label>
+            <div id="licenseDropBox" class="drop-box" tabindex="0" role="button" aria-label="Upload driver's license image">
+              <input type="file" id="licenseDropInput" name="licenseDropInput" accept="image/*" required />
+              <div id="dropBoxDefault" class="drop-box-content">
+                <span class="drop-icon">🖼️</span>
+                <p class="drop-title">Drag &amp; drop your Driver's License image here, or <span>browse</span></p>
+                <p class="drop-hint">PNG, JPG, or WEBP • Make sure text and photo are clear</p>
+              </div>
+              <div id="dropBoxPreview" class="drop-box-preview">
+                <img id="licensePreviewImg" src="" alt="Driver's license preview" />
+                <div class="preview-meta">
+                  <span id="licensePreviewName" class="preview-name"></span>
+                  <button type="button" id="removeLicenseBtn" class="remove-file-btn">Change / Remove</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="licenseExpiry">License Expiration Date</label>
+              <input type="date" id="licenseExpiry" name="licenseExpiry" required />
+            </div>
+
+            <div class="form-group">
+              <label for="studentIdUpload">Student ID / COR Upload</label>
+              <label class="file-pill" for="studentIdUpload">
+                <span class="file-badge">Choose File</span>
+                <span class="file-name" id="studentIdName">No file selected</span>
+                <input type="file" id="studentIdUpload" name="studentIdUpload" accept="image/*,.pdf" required />
+              </label>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="emergencyName">Emergency Contact Name</label>
+              <input type="text" id="emergencyName" name="emergencyName" placeholder="Emergency Contact Name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="emergencyPhone">Emergency Contact Phone</label>
+              <input type="tel" id="emergencyPhone" name="emergencyPhone" placeholder="e.g. 09171234567" required />
+            </div>
+          </div>
+
+          <label class="agreement-row" for="safetyAgreement">
+            <input type="checkbox" id="safetyAgreement" name="safetyAgreement" required />
+            <span>I agree to campus safety regulations and carpool policies.</span>
+          </label>
+
+          <p class="form-error" id="form-error-2" role="alert" hidden></p>
+
+          <div class="btn-stack">
+            <button type="submit" class="pill-btn primary-btn">Submit for Verification</button>
+            <button type="button" id="back-to-step1" class="pill-btn secondary-btn">← Back to Step 1</button>
+          </div>
+
+          <div class="step-indicator">
+            <div class="step-bars">
+              <span class="bar active"></span>
+              <span class="bar active"></span>
+            </div>
+            <p class="step-label">Step 2: Additional Verification &amp; Documents</p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="auth-toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="sakaytayoauth.js"></script>
+  <script src="driververification.js"></script>
+</body>
+</html>

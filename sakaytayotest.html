@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SakayTayo! — Test Accounts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="sakaytayorides.css" />
+  <link rel="stylesheet" href="sakaytayodriverdash.css" />
+</head>
+<body>
+  <div class="bg-scene" aria-hidden="true"></div>
+  <main class="rides-wrapper" style="margin-top:2.5rem">
+    <div class="glass-card">
+      <p class="tagline" style="text-align:center">for testing only</p>
+      <h1 class="card-heading">TEST ACCOUNTS</h1>
+      <p class="card-subtitle">Two linked accounts that share the same route and schedule. Switch between them to test the full flow.</p>
+
+      <div class="ride-list" id="accounts"></div>
+
+      <div class="btn-stack" style="display:flex;flex-direction:column;gap:.65rem;margin-top:1.2rem">
+        <button class="pill-btn primary-btn" id="reset">Reset test data</button>
+        <a class="pill-btn secondary-btn" href="sakaytayolandingpage.html" style="text-decoration:none">← Back to home</a>
+      </div>
+      <p class="card-subtitle" style="margin:1rem 0 0" id="status"></p>
+    </div>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="sakaytayoauth.js"></script>
+  <script src="sakaytayodata.js"></script>
+  <script src="sakaytayotest.js"></script>
+</body>
+</html>
