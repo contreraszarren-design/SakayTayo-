@@ -38,8 +38,8 @@ The main features of the Campus Carpool Matching and Reservation System are:
 
 1. **Student Registration and Login** – Allows students to create accounts and securely access the website.
 2. **Student Profile Management** – Enables users to manage their personal information and transportation preferences.
-3. **Carpool Matching** – Matches students based on similar routes, destinations, and travel schedules.
-4. **Ride Posting** – Allows student drivers to post available rides with details such as departure location, destination, date, time, and available seats.
+3. **Ride Posting/Finding** – Allows student drivers to post available rides with details such as departure location, destination, date, time, and available seats.
+4. **Carpool Matching** – Matches students based on similar routes, destinations, and travel schedules.
 5. **Ride Reservation** – Enables student passengers to search for available rides and reserve seats.
 6. **Available Seat Management** – Automatically updates the number of available seats after reservations or cancellations.
 7. **Cost-Sharing Calculator** – Estimates and divides transportation expenses among passengers.
